@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["Title"] = "Ceilao Gosto Coffee Shop";
+}
+
+<div id="home" class="block">
+    <div id="myCarousel" class="carousel slide row carousel-margins" data-ride="carousel" data-interval="3000">
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <img src="~/images/coffee-1.jpg" class="carousel-image" alt="coffee" />
+                <div class="carousel-caption">
+                    <p>
+                        <!--Text on image goes here followed by anchor-->
+                        A yawn is a silent scream for coffee!<br />
+                        <a asp-controller="Home" asp-action="Menu" class="carousel-link">
+                            <i class="fa fa-arrow-right fa-fw" aria-hidden="true"></i>&nbsp;Check out our Menu
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <div class="item">
+                <img src="~/images/best-coffee.jpg" class="carousel-image" alt="best-coffee" />
+                <div class="carousel-caption">
+                    <p>
+                        The best coffee in town!<br />
+                        <!--Text on image goes here followed by anchor-->
+                        <a asp-controller="Home" asp-action="Menu" class="carousel-link">
+                            <i class="fa fa-arrow-right fa-fw" aria-hidden="true"></i>&nbsp;Check out our Menu
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <div class="item">
+                <img src="~/images/sandwich.jpg" class="carousel-image" alt="sandwich-lunch" />
+                <div class="carousel-caption">
+                    <p>
+                        Lunchtime is best in Sandwich form!<br />
+                        <!--Text on image goes here followed by anchor-->
+                        <a asp-controller="Home" asp-action="Menu" class="carousel-link">
+                            <i class="fa fa-arrow-right fa-fw" aria-hidden="true"></i>&nbsp;Check out our Menu
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <div class="item">
+                <img src="~/images/chicken.jpg" class="carousel-image" alt="grilled-chicken" />
+                <div class="carousel-caption">
+                    <p>
+                        Anytime is a good time for grilled chicken!<br />
+                        <!--Text on image goes here followed by anchor-->
+                        <a asp-controller="Home" asp-action="Menu" class="carousel-link">
+                            <i class="fa fa-arrow-right fa-fw" aria-hidden="true"></i>&nbsp;Check out our Menu
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

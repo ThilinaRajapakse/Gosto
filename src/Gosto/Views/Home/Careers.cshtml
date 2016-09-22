@@ -1,0 +1,116 @@
+﻿@using Gosto.Models
+@model CareersForm
+
+@{
+    ViewBag.Title = "Careers";
+}
+
+@using (Html.BeginForm(FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+    <h4>Enter your details and we'll contact you.</h4>
+    <hr />
+    <div class="form-group">
+        @Html.LabelFor(m => m.Position, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.DropDownListFor(m => m.Position, Model.Positions, "- Please select a position -", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Position)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.FirstName, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.FirstName)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.LastName, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.LastName)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Email)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.DateOfBirth, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(m => m.DateOfBirth, "{0:yyyy-MM-dd}", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.DateOfBirth)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Address, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.TextAreaFor(m => m.Address, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Address)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Phone, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Phone)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Nic, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(m => m.Nic, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Nic)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Qualifications, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.TextAreaFor(m => m.Qualifications, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Qualifications)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Experience, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.TextAreaFor(m => m.Experience, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Experience)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Interests, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.TextAreaFor(m => m.Interests, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Interests)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Future, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.TextAreaFor(m => m.Future, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Future)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Referees, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.TextAreaFor(m => m.Referees, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Referees)
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="checkbox-width col-sm-1">
+            @Html.CheckBoxFor(m => m.Accurate, new { @class = "form-control checkbox-width" })
+            @Html.ValidationMessageFor(m => m.Accurate)
+        </div>
+        @Html.LabelFor(m => m.Accurate, new { @class = "col-sm-6 control-label text-left accurate-box" })
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <input type="submit" class="btn btn-default" value="Send" />
+        </div>
+    </div>
+}
