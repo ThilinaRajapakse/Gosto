@@ -1,0 +1,24 @@
+﻿@model Gosto.Models.MenuSection
+
+<table>
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.MenuItems)
+        {
+            string selectedRow = "";
+            if (item.MenuSectionID == (int?)ViewData["MenuSectionID"])
+            {
+                selectedRow = "success";
+            }
+            <tr class="@selectedRow">
+                <td>@item.Name</td>
+                <td>@item.Price</td>
+            </tr>
+        }
+    </tbody>
+</table>  

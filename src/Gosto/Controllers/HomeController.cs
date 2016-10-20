@@ -7,11 +7,44 @@ using Gosto.Models;
 using MimeKit;
 using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Gosto.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Gosto.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly MenuContext _context;
+
+        public HomeController(MenuContext context)
+        {
+            _context = context;
+        }
+
+        public async Task<IActionResult> MenuTest()
+        {
+            var menuContext = _context.MenuSections.Include(m => m.MenuItems);
+            return View(await menuContext.ToListAsync());
+        }
+
+        public async Task<IActionResult> MenuSectionContent(string menuSectionID)
+        {
+            var lookupId = int.Parse(menuSectionID);
+            var model = await this.GetFullAndPartialViewModel(lookupId);
+            return PartialView("MenuSectionContent", model);
+        }
+
+        private async Task<MenuSection> GetFullAndPartialViewModel(int MenuSectionID = 0)
+        {
+            foreach (var item in _context.MenuSections)
+            {
+                if(item.ID == MenuSectionID)
+                {
+                    return item; 
+                }
+            }
+        }
+
         public IActionResult Index()
         {
             return View();

@@ -15,5 +15,9 @@ namespace Gosto.Data
 
         public DbSet<MenuSection> MenuSections { get; set; }
         public DbSet<MenuItem> MenuItems { get; set; }
+        public DbSet<OrderMenuItems> OrderMenuItems { get; set; }
+        public DbSet<Order> Order { get; set; }
+        public DbSet<Customer> Customer { get; set; }
+        public DbSet<Reservation> Reservation { get; set; }
     }
 }
