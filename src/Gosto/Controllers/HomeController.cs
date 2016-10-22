@@ -9,6 +9,7 @@ using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Gosto.Data;
 using Microsoft.EntityFrameworkCore;
+using Gosto.ViewModels;
 
 namespace Gosto.Controllers
 {
@@ -23,26 +24,29 @@ namespace Gosto.Controllers
 
         public async Task<IActionResult> MenuTest()
         {
-            var menuContext = _context.MenuSections.Include(m => m.MenuItems);
-            return View(await menuContext.ToListAsync());
+            var model = await this.GetMenuSectionItemsVM();
+            return this.View(model);
         }
 
-        public async Task<IActionResult> MenuSectionContent(string menuSectionID)
+        [HttpGet]
+        public async Task<ActionResult> GetMenuSectionItems(string MenuSectionID)
         {
-            var lookupId = int.Parse(menuSectionID);
-            var model = await this.GetFullAndPartialViewModel(lookupId);
+            var lookupID = int.Parse(MenuSectionID);
+            var model = await this.GetMenuSectionItemsVM(lookupID);
             return PartialView("MenuSectionContent", model);
         }
 
-        private async Task<MenuSection> GetFullAndPartialViewModel(int MenuSectionID = 0)
+        private async Task<MenuSectionItemsVM> GetMenuSectionItemsVM(int lookupID = 0)
         {
-            foreach (var item in _context.MenuSections)
+            var menuSections = _context.MenuSections.ToList();
+
+            var menuSectionItemsVM = new MenuSectionItemsVM
             {
-                if(item.ID == MenuSectionID)
-                {
-                    return item; 
-                }
-            }
+                MenuSectionID = lookupID,
+                MenuSections = _context.MenuSections.ToList(),
+                MenuItems = (from s in menuSections.ToList() where s.ID == lookupID select s.MenuItems.FirstOrDefault()).ToList()
+            };
+            return menuSectionItemsVM;
         }
 
         public IActionResult Index()

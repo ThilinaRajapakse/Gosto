@@ -25,6 +25,7 @@
     "Microsoft.Extensions.Logging.Debug": "1.0.0-rc2-final",
     "Microsoft.IdentityModel.Protocols": "2.0.0-rc2-305061149",
     "Microsoft.IdentityModel.Tokens": "5.0.0-rc2-305061149",
+    "Microsoft.jQuery.Unobtrusive.Ajax": "3.2.3",
     "Microsoft.NETCore.App": {
       "version": "1.0.0-rc2-3002702",
       "type": "platform"

@@ -16,7 +16,7 @@ namespace Gosto.Models
 
         public int TotalPrice { get; set; }
 
-        public ICollection<OrderMenuItems> OrderedItems { get; set; }
+        public IList<OrderMenuItems> OrderedItems { get; set; }
 
         public Customer Customer { get; set; }
     }

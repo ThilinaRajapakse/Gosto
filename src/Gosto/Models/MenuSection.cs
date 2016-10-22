@@ -11,6 +11,6 @@ namespace Gosto.Models
         public string Name { get; set; }
         public string Description { get; set; }
 
-        public ICollection<MenuItem> MenuItems { get; set; }
+        public IList<MenuItem> MenuItems { get; set; }
     }
 }

@@ -17,8 +17,8 @@ namespace Gosto.Models
 
         public string Email { get; set; }
 
-        public ICollection<Order> Orders { get; set; }
+        public IList<Order> Orders { get; set; }
 
-        public ICollection<Reservation> Reservations { get; set; }
+        public IList<Reservation> Reservations { get; set; }
     }
 }
