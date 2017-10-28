@@ -12,6 +12,9 @@ using Microsoft.Extensions.Logging;
 using Gosto.Models;
 using Gosto.Services;
 using Gosto.Data;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.AspNetCore.Http;
 
 namespace Gosto
 {
@@ -40,9 +43,6 @@ namespace Gosto
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            services.AddDbContext<MenuContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -51,14 +51,25 @@ namespace Gosto
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+            });
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+            services.AddTransient<AdminSeedData>();
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy(
+                    "CanViewAdminPage",
+                    policy => policy.RequireRole("Administrator"));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, MenuContext context)
+        public async void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, ApplicationDbContext context, AdminSeedData seeder)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -77,8 +88,10 @@ namespace Gosto
             app.UseStaticFiles();
 
             app.UseIdentity();
+            app.UseSession();
 
             // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
+
 
             app.UseMvc(routes =>
             {
@@ -88,6 +101,7 @@ namespace Gosto
             });
 
             DbInitializer.Initialize(context);
+            await seeder.EnsureSeedDataAsync();
 
         }
     }

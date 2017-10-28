@@ -23,6 +23,13 @@ namespace Gosto.Models
             // Add your customizations after calling base.OnModelCreating(builder);
         }
 
-
+        public DbSet<MenuSection> MenuSections { get; set; }
+        public DbSet<MenuItem> MenuItems { get; set; }
+        public DbSet<OrderMenuItems> OrderMenuItems { get; set; }
+        public DbSet<Order> Order { get; set; }
+        public DbSet<Reservation> Reservation { get; set; }
+        public DbSet<ApplicationUser> ApplicationUser { get; set; }
+        public DbSet<Promotion> Promotion { get; set; }
+        public DbSet<ShoppingCart> ShoppingCart { get; set; }
     }
 }

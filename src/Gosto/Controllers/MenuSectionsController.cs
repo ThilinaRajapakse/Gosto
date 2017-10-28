@@ -7,14 +7,16 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Gosto.Data;
 using Gosto.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Gosto.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class MenuSectionsController : Controller
     {
-        private readonly MenuContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public MenuSectionsController(MenuContext context)
+        public MenuSectionsController(ApplicationDbContext context)
         {
             _context = context;    
         }

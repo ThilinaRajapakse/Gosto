@@ -1,0 +1,12 @@
+﻿@{
+    ViewData["Title"] = "Promotions";
+}
+
+@model Gosto.ViewModels.PromotionsViewModel
+
+<div class="container">
+    @foreach (var image in Model.Images)
+    {
+        <div class="row margin-top"><img src="@Url.Content(image.Replace(@"\", "/"))" class="img-thumbnail center-block" alt="Promotion" /></div>
+    }
+</div>

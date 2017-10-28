@@ -11,10 +11,16 @@ namespace Gosto.Models
 
         public int Quantity { get; set; }
 
-        public string Comments { get; set; }
+        public int Price { get; set; }
+
+        public DateTime DateCreated { get; set; }
 
         public int MenuItemID { get; set; }
 
+        public string ShoppingCartID { get; set; }
+
         public MenuItem MenuItem { get; set; }
+
+        public Order Order { get; set; }
     }
 }

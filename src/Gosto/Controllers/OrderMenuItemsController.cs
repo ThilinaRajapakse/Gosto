@@ -5,16 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Gosto.Data;
 using Gosto.Models;
 
 namespace Gosto.Controllers
 {
     public class OrderMenuItemsController : Controller
     {
-        private readonly MenuContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public OrderMenuItemsController(MenuContext context)
+        public OrderMenuItemsController(ApplicationDbContext context)
         {
             _context = context;    
         }
@@ -22,8 +21,8 @@ namespace Gosto.Controllers
         // GET: OrderMenuItems
         public async Task<IActionResult> Index()
         {
-            var menuContext = _context.OrderMenuItems.Include(o => o.MenuItem);
-            return View(await menuContext.ToListAsync());
+            var applicationDbContext = _context.OrderMenuItems.Include(o => o.MenuItem);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: OrderMenuItems/Details/5
@@ -46,7 +45,7 @@ namespace Gosto.Controllers
         // GET: OrderMenuItems/Create
         public IActionResult Create()
         {
-            ViewData["MenuItemID"] = new SelectList(_context.MenuItems, "ID", "Name");
+            ViewData["MenuItemID"] = new SelectList(_context.MenuItems, "ID", "MenuItem");
             return View();
         }
 
@@ -55,7 +54,7 @@ namespace Gosto.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Comments,MenuItemID,Quantity")] OrderMenuItems orderMenuItems)
+        public async Task<IActionResult> Create([Bind("ID,DateCreated,MenuItemID,Price,Quantity,ShoppingCartID")] OrderMenuItems orderMenuItems)
         {
             if (ModelState.IsValid)
             {
@@ -63,7 +62,7 @@ namespace Gosto.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewData["MenuItemID"] = new SelectList(_context.MenuItems, "ID", "Name", orderMenuItems.MenuItemID);
+            ViewData["MenuItemID"] = new SelectList(_context.MenuItems, "ID", "MenuItem", orderMenuItems.MenuItemID);
             return View(orderMenuItems);
         }
 
@@ -80,7 +79,7 @@ namespace Gosto.Controllers
             {
                 return NotFound();
             }
-            ViewData["MenuItemID"] = new SelectList(_context.MenuItems, "ID", "Name", orderMenuItems.MenuItemID);
+            ViewData["MenuItemID"] = new SelectList(_context.MenuItems, "ID", "MenuItem", orderMenuItems.MenuItemID);
             return View(orderMenuItems);
         }
 
@@ -89,7 +88,7 @@ namespace Gosto.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Comments,MenuItemID,Quantity")] OrderMenuItems orderMenuItems)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,DateCreated,MenuItemID,Price,Quantity,ShoppingCartID")] OrderMenuItems orderMenuItems)
         {
             if (id != orderMenuItems.ID)
             {
@@ -116,7 +115,7 @@ namespace Gosto.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            ViewData["MenuItemID"] = new SelectList(_context.MenuItems, "ID", "Name", orderMenuItems.MenuItemID);
+            ViewData["MenuItemID"] = new SelectList(_context.MenuItems, "ID", "MenuItem", orderMenuItems.MenuItemID);
             return View(orderMenuItems);
         }
 

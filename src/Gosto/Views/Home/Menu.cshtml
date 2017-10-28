@@ -1,628 +1,74 @@
-﻿@{
+﻿@model Gosto.ViewModels.MenuSectionItemsVM
+
+@{
     ViewData["Title"] = "Menu";
 }
-
-
 
 <div class="container">
     <div class="row">
         <div class="col-sm-2">
-            <ul class="nav nav-pills nav-stacked menu-item active-color">
-                <li class="active"><a data-toggle="pill" href="#menu0">Soups</a></li>
-                <li><a data-toggle="pill" href="#menu1">Salads</a></li>
-                <li><a data-toggle="pill" href="#menu2">Wraps</a></li>
-                <li><a data-toggle="pill" href="#menu3">Sandwiches</a></li>
-                <li><a data-toggle="pill" href="#menu4">Waffle Treats</a></li>
-                <li><a data-toggle="pill" href="#menu5">Pastas</a></li>
-                <li><a data-toggle="pill" href="#menu6">Pizza - Authentic Italian</a></li>
-                <li><a data-toggle="pill" href="#menu7">Main Courses</a></li>
-                <li><a data-toggle="pill" href="#menu8">Desserts</a></li>
-                <li><a data-toggle="pill" href="#menu9">Add-ons</a></li>
-                <li><a data-toggle="pill" href="#menu10">Fresh Juice</a></li>
-                <li><a data-toggle="pill" href="#menu11">Mocktails</a></li>
-                <li><a data-toggle="pill" href="#menu12">Coffee</a></li>
-                <li><a data-toggle="pill" href="#menu13">Tea</a></li>
-                <li><a data-toggle="pill" href="#menu14">Milk Shakes</a></li>
-                <li><a id="cakes" data-toggle="pill" href="#menu15">Cakes and Muffins</a></li>
+            <ul class="nav nav-pills nav-stacked menu-item active-color menuSections">
+                @{var currentModel = Model;
+                    for (int i = 0; i < currentModel.MenuSections.Count(); i++)
+                    {
+                        var item = Model.MenuSections[i];
+                        <li><a id="menu(@item.ID)" onclick="getMenuItems(@item.ID)" data-toggle="pill">@item.Name</a></li>
+                    }}
             </ul>
         </div>
 
-        <div class="col-sm-10">
-            <div class="tab-content">
-                <div id="menu0" class="tab-pane fade in active">
-                    <h3 class="menu-heading">Soups</h3>
+        <div id="menuContent">
+            <div class="col-sm-10">
+                <div class="tab-content">
                     <table class="table table-hover table-striped menu-item">
                         <tbody class="table-hover">
-                            <tr>
-                                <td class="text-left">Chicken & Mushroom Soup</td>
-                                <td class="text-left">Rs. 350/=</td>
-                                <td class="text-left">$2.38</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Mutton Soup</td>
-                                <td class="text-left">Rs. 550/=</td>
-                                <td class="text-left">$3.74</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="text-center back-to-top-button">
-                        <a href="#" class="btn btn-warning" role="button"><i class="fa fa-arrow-circle-o-up fa-2x" aria-hidden="true"></i><span class="back-to-top-button-text">&nbsp; Back to menu categories</span></a>
-                    </div>
-                </div>
-                <div id="menu1" class="tab-pane fade">
-                    <h3 class="menu-heading">Salads</h3>
-                    <table class="table table-hover table-striped menu-item">
-                        <tbody class="table-hover">
-                            <tr>
-                                <td class="text-left">Mix Salad</td>
-                                <td class="text-left">Rs. 350/=</td>
-                                <td class="text-left">$2.38</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Ceilao Gosto Chef's Salad</td>
-                                <td class="text-left">Rs. 550/=</td>
-                                <td class="text-left">$3.74</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Cashew & Pickled Mango Salad</td>
-                                <td class="text-left">Rs. 550/=</td>
-                                <td class="text-left">$3.74</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Shrimp & Fish Salad</td>
-                                <td class="text-left">Rs. 650/=</td>
-                                <td class="text-left">$4.42</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Apple, Cashew & Chicken Salad</td>
-                                <td class="text-left">Rs. 600/=</td>
-                                <td class="text-left">$4.08</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="text-center back-to-top-button">
-                        <a href="#" class="btn btn-warning" role="button"><i class="fa fa-arrow-circle-o-up fa-2x" aria-hidden="true"></i><span class="back-to-top-button-text">&nbsp; Back to menu categories</span></a>
-                    </div>
-                </div>
-                <div id="menu2" class="tab-pane fade">
-                    <h3 class="menu-heading">Wraps</h3>
-                    <table class="table table-hover table-striped menu-item">
-                        <tbody class="table-hover">
-                            <tr>
-                                <td class="text-left">Sausage & Cheese</td>
-                                <td class="text-left">Rs. 350/=</td>
-                                <td class="text-left">$2.38</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">CEILAO GOSTO Special Wrap</td>
-                                <td class="text-left">Rs. 550/=</td>
-                                <td class="text-left">$3.74</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Tuna</td>
-                                <td class="text-left">Rs. 340/=</td>
-                                <td class="text-left">$2.31</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Garlic Prawn</td>
-                                <td class="text-left">Rs. 620/=</td>
-                                <td class="text-left">$4.22</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Mutton</td>
-                                <td class="text-left">Rs. 690/=</td>
-                                <td class="text-left">$4.70</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Chicken & Cheese</td>
-                                <td class="text-left">Rs. 500/=</td>
-                                <td class="text-left">$3.40</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Pickled Fruit</td>
-                                <td class="text-left">Rs. 600/=</td>
-                                <td class="text-left">$4.08</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="text-center back-to-top-button">
-                        <a href="#" class="btn btn-warning" role="button"><i class="fa fa-arrow-circle-o-up fa-2x" aria-hidden="true"></i><span class="back-to-top-button-text">&nbsp; Back to menu categories</span></a>
-                    </div>
-                </div>
-                <div id="menu3" class="tab-pane fade">
-                    <h3 class="menu-heading">Sandwiches</h3>
-                    <table class="table table-hover table-striped menu-item">
-                        <tbody class="table-hover">
-                            <tr>
-                                <td class="text-left">Tuna</td>
-                                <td class="text-left">Rs. 380/=</td>
-                                <td class="text-left">$2.59</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Chicken</td>
-                                <td class="text-left">Rs. 350/=</td>
-                                <td class="text-left">$2.38</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Egg</td>
-                                <td class="text-left">Rs. 250/=</td>
-                                <td class="text-left">$1.70</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Cheese & Sun Blushed Tomato</td>
-                                <td class="text-left">Rs. 300/=</td>
-                                <td class="text-left">$2.04</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Ham & Cheese with Mustard</td>
-                                <td class="text-left">Rs. 325/=</td>
-                                <td class="text-left">$2.21</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Chicken & Cheese</td>
-                                <td class="text-left">Rs. 390/=</td>
-                                <td class="text-left">$2.65</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Club Sandwich</td>
-                                <td class="text-left">Rs. 750/=</td>
-                                <td class="text-left">$5.10</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <p>*All sandwiches are served with french fries</p>
-                    <div class="text-center back-to-top-button">
-                        <a href="#" class="btn btn-warning" role="button"><i class="fa fa-arrow-circle-o-up fa-2x" aria-hidden="true"></i><span class="back-to-top-button-text">&nbsp; Back to menu categories</span></a>
-                    </div>
-                </div>
-                <div id="menu4" class="tab-pane fade">
-                    <h3 class="menu-heading">Waffle Treats</h3>
-                    <table class="table table-hover table-striped menu-item">
-                        <tbody class="table-hover">
-                            <tr>
-                                <td class="text-left">Spicy Chicken</td>
-                                <td class="text-left">Rs. 400/=</td>
-                                <td class="text-left">$2.72</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Spicy Mutton</td>
-                                <td class="text-left">Rs. 800/=</td>
-                                <td class="text-left">$5.44</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Bacon & Cheese</td>
-                                <td class="text-left">Rs. 450/=</td>
-                                <td class="text-left">$3.06</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Waffle with Whipped Cream & Chocolate Sauce</td>
-                                <td class="text-left">Rs. 200/=</td>
-                                <td class="text-left">$1.36</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Waffle with Whipped Cream & Strawberry Topping</td>
-                                <td class="text-left">Rs. 250/=</td>
-                                <td class="text-left">$1.70</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Waffle with Treacle Honey</td>
-                                <td class="text-left">Rs. 180/=</td>
-                                <td class="text-left">$1.23</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Waffle with Natural Bee Honey</td>
-                                <td class="text-left">Rs. 300/=</td>
-                                <td class="text-left">$2.04</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="text-center back-to-top-button">
-                        <a href="#" class="btn btn-warning" role="button"><i class="fa fa-arrow-circle-o-up fa-2x" aria-hidden="true"></i><span class="back-to-top-button-text">&nbsp; Back to menu categories</span></a>
-                    </div>
-                </div>
-                <div id="menu5" class="tab-pane fade">
-                    <h3 class="menu-heading">Pasta</h3>
-                    <table class="table table-hover table-striped menu-item">
-                        <tbody class="table-hover">
-                            <tr>
-                                <td class="text-left">Tagliatelle with Spicy Mutton</td>
-                                <td class="text-left">Rs. 825/=</td>
-                                <td class="text-left">$5.61</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Spaghetti Bolognese</td>
-                                <td class="text-left">Rs. 550/=</td>
-                                <td class="text-left">$3.74</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Creamy Chicken with Spinach</td>
-                                <td class="text-left">Rs. 420/=</td>
-                                <td class="text-left">$2.86</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Creamy Prawn with Spinach</td>
-                                <td class="text-left">Rs. 490/=</td>
-                                <td class="text-left">$3.33</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Spaghetti & Sausage in Chicken Sauce</td>
-                                <td class="text-left">Rs. 350/=</td>
-                                <td class="text-left">$2.38</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Mutton Lasagna</td>
-                                <td class="text-left">Rs. 1540/=</td>
-                                <td class="text-left">$10.48</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Bacon Lasagna</td>
-                                <td class="text-left">Rs. 1100/=</td>
-                                <td class="text-left">$7.49</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Chicken Lasagna</td>
-                                <td class="text-left">Rs. 950/=</td>
-                                <td class="text-left">$6.47</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="text-center back-to-top-button">
-                        <a href="#" class="btn btn-warning" role="button"><i class="fa fa-arrow-circle-o-up fa-2x" aria-hidden="true"></i><span class="back-to-top-button-text">&nbsp; Back to menu categories</span></a>
-                    </div>
-                </div>
-                <div id="menu6" class="tab-pane fade">
-                    <h3 class="menu-heading">Pizza - Authentic Italian</h3>
-                    <table class="table table-hover table-striped menu-item">
-                        <tbody class="table-hover">
-                            <tr>
-                                <td class="text-left">Roast Chicken</td>
-                                <td class="text-left">Regular - Rs. 650/=<br />Large - Rs.1300/=</td>
-                                <td class="text-left">$4.42<br />$8.85</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Garlic Prawn</td>
-                                <td class="text-left">Regular - Rs. 740/=<br />Large - Rs.1460/=</td>
-                                <td class="text-left">$5.04<br />$9.94</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Mutton</td>
-                                <td class="text-left">Regular - Rs. 990/=<br />Large - Rs.1900/=$12.93</td>
-                                <td class="text-left">$6.74<br />$12.93</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Cheese & Onion</td>
-                                <td class="text-left">Regular - Rs. 400/=<br />Large - Rs.775/=</td>
-                                <td class="text-left">$2.72<br />$5.27</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Bacon</td>
-                                <td class="text-left">Regular - Rs. 850/=<br />Large - Rs.1700/=</td>
-                                <td class="text-left">$5.79<br />$11.57</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Sausage</td>
-                                <td class="text-left">Regular - Rs. 600/=<br />Large - Rs.1100/=</td>
-                                <td class="text-left">$4.08<br />$7.49</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="text-center back-to-top-button">
-                        <a href="#" class="btn btn-warning" role="button"><i class="fa fa-arrow-circle-o-up fa-2x" aria-hidden="true"></i><span class="back-to-top-button-text">&nbsp; Back to menu categories</span></a>
-                    </div>
-                </div>
+                            @{
+                                var menuSection = Model.MenuSections[0];
 
-                <div id="menu7" class="tab-pane fade">
-                    <h3 class="menu-heading">Main Courses</h3>
-                    <table class="table table-hover table-striped menu-item">
-                        <tbody class="table-hover">
-                            <tr>
-                                <td class="text-left">Grilled Seer Fish with, Butter Fried Herb Vegetables, Mashed Potato and Lemon Butter Sauce</td>
-                                <td class="text-left">Rs. 800/=</td>
-                                <td class="text-left">$5.44</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Grilled Chicken with Butter Fried Herb Vegetables, Mashed Potato and Pepper Sauce</td>
-                                <td class="text-left">Rs. 550/=</td>
-                                <td class="text-left">$3.74</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Garlic Toast with Two Jumbo Sausages & French Fries</td>
-                                <td class="text-left">Rs. 450/=</td>
-                                <td class="text-left">$3.06</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Teriyaki Rice</td>
-                                <td class="text-left">Rs. 650/=</td>
-                                <td class="text-left">$4.42</td>
-                            </tr>
+                                for (int i = 0; i < menuSection.MenuItems.Count(); i++)
+                                {
+                                    var item = menuSection.MenuItems[i];
+                                    <tr>
+                                        <td>@item.Name</td>
+                                        <td>Rs. @item.Price/=</td>
+                                        <td><a onclick="addToCart(@item.ID)" class="btn btn-success">Add to cart</a></td>
+                                    </tr>
+                                }
+                            }
                         </tbody>
                     </table>
-                    <div class="text-center back-to-top-button">
-                        <a href="#" class="btn btn-warning" role="button"><i class="fa fa-arrow-circle-o-up fa-2x" aria-hidden="true"></i><span class="back-to-top-button-text">&nbsp; Back to menu categories</span></a>
-                    </div>
-                </div>
-                <div id="menu8" class="tab-pane fade">
-                    <h3 class="menu-heading">Desserts</h3>
-                    <table class="table table-hover table-striped menu-item">
-                        <tbody class="table-hover">
-                            <tr>
-                                <td class="text-left">Chocolate Mousse</td>
-                                <td class="text-left">Rs. 250/=</td>
-                                <td class="text-left">$1.70</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Orange Mousse</td>
-                                <td class="text-left">Rs. 250/=</td>
-                                <td class="text-left">$1.70</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Ice Cream(Vanilla/Strawberry/Chocolate) topped with Roasted Cashews & Topping</td>
-                                <td class="text-left">Rs. 200/=</td>
-                                <td class="text-left">$1.36</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div id="menu9" class="tab-pane fade">
-                    <h3 class="menu-heading">Add-ons</h3>
-                    <table class="table table-hover table-striped menu-item">
-                        <tbody class="table-hover">
-                            <tr>
-                                <td class="text-left">French Fries</td>
-                                <td class="text-left">Rs. 250/=</td>
-                                <td class="text-left">$1.70</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Ham and Cheese Omelette</td>
-                                <td class="text-left">Rs. 250/=</td>
-                                <td class="text-left">$1.70</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Garlic Toast</td>
-                                <td class="text-left">Rs. 25/=</td>
-                                <td class="text-left">$0.17</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Devilled Cashew</td>
-                                <td class="text-left">Rs. 350/=</td>
-                                <td class="text-left">$2.38</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="text-center back-to-top-button">
-                        <a href="#" class="btn btn-warning" role="button"><i class="fa fa-arrow-circle-o-up fa-2x" aria-hidden="true"></i><span class="back-to-top-button-text">&nbsp; Back to menu categories</span></a>
-                    </div>
-                </div>
-                <div id="menu10" class="tab-pane fade">
-                    <h3 class="menu-heading">Fresh Juice</h3>
-                    <table class="table table-hover table-striped menu-item">
-                        <tbody class="table-hover">
-                            <tr>
-                                <td class="text-left">Watermelon</td>
-                                <td class="text-left">Rs. 200/=</td>
-                                <td class="text-left">$1.36</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Pineapple</td>
-                                <td class="text-left">Rs. 200/=</td>
-                                <td class="text-left">$1.36</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Mango</td>
-                                <td class="text-left">Rs. 250/=</td>
-                                <td class="text-left">$1.70</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Papaya</td>
-                                <td class="text-left">Rs. 200/=</td>
-                                <td class="text-left">$1.36</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Passion Fruit</td>
-                                <td class="text-left">Rs. 200/=</td>
-                                <td class="text-left">$1.36</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Lime</td>
-                                <td class="text-left">Rs. 200/=</td>
-                                <td class="text-left">$1.36</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Mixed Fruit</td>
-                                <td class="text-left">Rs. 250/=</td>
-                                <td class="text-left">$1.70</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Karapincha (Curry Leaves)</td>
-                                <td class="text-left">Rs. 200/=</td>
-                                <td class="text-left">$1.36</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Carrot</td>
-                                <td class="text-left">Rs. 200/=</td>
-                                <td class="text-left">$1.36</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Cucumber</td>
-                                <td class="text-left">Rs. 200/=</td>
-                                <td class="text-left">$1.36</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Carrot and Orange</td>
-                                <td class="text-left">Rs. 250/=</td>
-                                <td class="text-left">$1.70</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="text-center back-to-top-button">
-                        <a href="#" class="btn btn-warning" role="button"><i class="fa fa-arrow-circle-o-up fa-2x" aria-hidden="true"></i><span class="back-to-top-button-text">&nbsp; Back to menu categories</span></a>
-                    </div>
-                </div>
-                <div id="menu11" class="tab-pane fade">
-                    <h3 class="menu-heading">Mocktails</h3>
-                    <table class="table table-hover table-striped menu-item">
-                        <tbody class="table-hover">
-                            <tr>
-                                <td class="text-left">Mojito</td>
-                                <td class="text-left">Rs. 400/=</td>
-                                <td class="text-left">$2.72</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Pineapple Rock</td>
-                                <td class="text-left">Rs. 400/=</td>
-                                <td class="text-left">$2.72</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="text-center back-to-top-button">
-                        <a href="#" class="btn btn-warning" role="button"><i class="fa fa-arrow-circle-o-up fa-2x" aria-hidden="true"></i><span class="back-to-top-button-text">&nbsp; Back to menu categories</span></a>
-                    </div>
-                </div>
-                <div id="menu12" class="tab-pane fade">
-                    <h3 class="menu-heading">Coffee</h3>
-                    <table class="table table-hover table-striped menu-item">
-                        <tbody class="table-hover">
-                            <tr>
-                                <td class="text-left">Cappucino</td>
-                                <td class="text-left">Rs. 290/=</td>
-                                <td class="text-left">$1.98</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Latte Macchiato</td>
-                                <td class="text-left">Rs. 290/=</td>
-                                <td class="text-left">$1.98</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Americano</td>
-                                <td class="text-left">Rs. 290/=</td>
-                                <td class="text-left">$1.98</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Espresso</td>
-                                <td class="text-left">Rs. 210/=</td>
-                                <td class="text-left">$1.43</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Lungo</td>
-                                <td class="text-left">Rs. 290/=</td>
-                                <td class="text-left">$1.98</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Cocoa Hot Milk</td>
-                                <td class="text-left">Rs. 300/=</td>
-                                <td class="text-left">$2.05</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Greek Frappe</td>
-                                <td class="text-left">Rs. 250/=</td>
-                                <td class="text-left">$1.70</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="text-center back-to-top-button">
-                        <a href="#" class="btn btn-warning" role="button"><i class="fa fa-arrow-circle-o-up fa-2x" aria-hidden="true"></i><span class="back-to-top-button-text">&nbsp; Back to menu categories</span></a>
-                    </div>
-                </div>
-                <div id="menu13" class="tab-pane fade">
-                    <h3 class="menu-heading">Tea</h3>
-                    <table class="table table-hover table-striped menu-item">
-                        <tbody class="table-hover">
-                            <tr>
-                                <td class="text-left">Green Tea</td>
-                                <td class="text-left">Rs. 200/=</td>
-                                <td class="text-left">$1.36</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Flavoured Tea (Black currant, lemon, mint, raspberry, wild strawberry, winter wine, cherry lift, chocolate)</td>
-                                <td class="text-left">Rs. 170/=</td>
-                                <td class="text-left">$1.16</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Lemon Iced Tea</td>
-                                <td class="text-left">Rs. 175/=</td>
-                                <td class="text-left">$1.19</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Cardamom and Vanilla Tea</td>
-                                <td class="text-left">Rs. 150/=</td>
-                                <td class="text-left">$1.02</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Lemon and Cardamom Plain Tea</td>
-                                <td class="text-left">Rs. 100/=</td>
-                                <td class="text-left">$0.68</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="text-center back-to-top-button">
-                        <a href="#" class="btn btn-warning" role="button"><i class="fa fa-arrow-circle-o-up fa-2x" aria-hidden="true"></i><span class="back-to-top-button-text">&nbsp; Back to menu categories</span></a>
-                    </div>
-                </div>
-                <div id="menu14" class="tab-pane fade">
-                    <h3 class="menu-heading">Milk Shakes</h3>
-                    <table class="table table-hover table-striped menu-item">
-                        <tbody class="table-hover">
-                            <tr>
-                                <td class="text-left">Chocolate</td>
-                                <td class="text-left">Rs. 250/=</td>
-                                <td class="text-left">$1.70</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Vanilla</td>
-                                <td class="text-left">Rs. 250/=</td>
-                                <td class="text-left">$1.70</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Strawberry</td>
-                                <td class="text-left">Rs. 250/=</td>
-                                <td class="text-left">$1.70</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="text-center back-to-top-button">
-                        <a href="#" class="btn btn-warning" role="button"><i class="fa fa-arrow-circle-o-up fa-2x" aria-hidden="true"></i><span class="back-to-top-button-text">&nbsp; Back to menu categories</span></a>
-                    </div>
-                </div>
-                <div id="menu15" class="tab-pane fade">
-                    <h3 class="menu-heading">Cakes and Muffins</h3>
-                    <table class="table table-hover table-striped menu-item">
-                        <tbody class="table-hover">
-                            <tr>
-                                <td class="text-left">Banana Cake</td>
-                                <td class="text-left">Rs. 100/=</td>
-                                <td class="text-left">$0.68</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Coffee Cake</td>
-                                <td class="text-left">Rs. 100/=</td>
-                                <td class="text-left">$0.68</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Chocolate Fudge Cake</td>
-                                <td class="text-left">Rs. 250/=</td>
-                                <td class="text-left">$1.70</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Vanilla Muffin with Strawberry topping</td>
-                                <td class="text-left">Rs. 120/=</td>
-                                <td class="text-left">$0.82</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="text-center back-to-top-button">
-                        <a href="#" class="btn btn-warning" role="button"><i class="fa fa-arrow-circle-o-up fa-2x" aria-hidden="true"></i><span class="back-to-top-button-text">&nbsp; Back to menu categories</span></a>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row exchange-rate text-center"><p>*All USD prices are calculated at an exchange rate of $1 = Rs. 147.<br />(Exchange rate as of 22/06/2016)</p></div>
 </div>
 
 <script>
-    if($(window).width() <= 800) {
+    function getMenuItems(ID) {
+        var url = "/Home/GetMenuSectionItems/";
+        $.get(url, { ID: ID })
+         .done(function (response) {
+             $("#menuContent").html(response);
+         })
+    }
+</script>
+
+<script>
+    function addToCart(ID) {
+        var url = "/Shopping/AddToCart/";
+        $.get(url, { ID: ID })
+        .done(function () {
+            alert("Item has been added to your shopping cart.");
+        })
+    }
+</script>
+
+
+
+<script>
+    if ($(window).width() <= 800) {
         $('ul.nav').find('a').click(function () {
-            $('body').scrollTo('#cakes');
+            $('body').scrollTo('#menu16');
         });
     }
 </script>

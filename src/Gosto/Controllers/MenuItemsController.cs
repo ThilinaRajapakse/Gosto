@@ -7,14 +7,16 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Gosto.Data;
 using Gosto.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Gosto.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class MenuItemsController : Controller
     {
-        private readonly MenuContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public MenuItemsController(MenuContext context)
+        public MenuItemsController(ApplicationDbContext context)
         {
             _context = context;    
         }
@@ -22,8 +24,8 @@ namespace Gosto.Controllers
         // GET: MenuItems
         public async Task<IActionResult> Index()
         {
-            var menuContext = _context.MenuItems.Include(m => m.MenuSection);
-            return View(await menuContext.ToListAsync());
+            var ApplicationDbContext = _context.MenuItems.Include(m => m.MenuSection);
+            return View(await ApplicationDbContext.ToListAsync());
         }
 
         // GET: MenuItems/Details/5

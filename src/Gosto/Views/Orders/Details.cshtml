@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Details";
 }
+@Html.Partial("AdminMenuPartial");
 
 <h2>Details</h2>
 
@@ -11,16 +12,22 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.OrderDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OrderDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ShoppingCartID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ShoppingCartID)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.TakeAway)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.TakeAway)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ReadyAt)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ReadyAt)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.TotalPrice)

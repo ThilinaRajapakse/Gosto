@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name=”description” content="Visit us when you are in Kandy for delicious coffee, delectable food and an unrivalled atmosphere. See you at Ceilao Gosto Coffee Shop and Restaurant.">
     <title>@ViewData["Title"] - Ceilao Gosto Restaurant and Coffee Shop</title>
-    <link rel="stylesheet" href="~/fonts/font-awesome-4.6.3/css/font-awesome.min.css" />
+    <script src="https://use.fontawesome.com/d9beb3ddd6.js"></script>
     <link rel="stylesheet" href="~/fonts/other/style.css" />
+    <link rel="stylesheet" href="~/css/bootstrap-datetimepicker.min.css" />
     <script type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>
     <script type="text/javascript" src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
     <script type="text/javascript" src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     <script type="text/javascript" src="~/js/site.js"></script>
-    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"> </script>
 
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -36,6 +36,8 @@
     </script>
 </head>
 <body>
+    @using Microsoft.AspNetCore.Authorization
+    @inject IAuthorizationService AuthorizationService
     <div class="navbar navbar-default navbar-fixed-top">
         <div class="container navbar-font">
             <div class="navbar-header">
@@ -47,19 +49,25 @@
                 </button>
                 <a asp-controller="Home" asp-action="Index" class="navbar-brand">Ceila&#771;o Gosto</a>
             </div>
-            <div class="navbar-collapse collapse">
+            <div class="navbar-collapse collapse fix-height">
                 <ul class="nav navbar-nav">
                     <li><a id="menu-btn" asp-controller="Home" asp-action="Menu"><i class="fa fa-cutlery fa-fw" aria-hidden="true"></i><span id="menu-txt" class="hide-text">&nbsp; Menu</span></a></li>
-                    <!--   <li><a asp-controller="Home" asp-action="Reservations">Reservations</a></li>    -->
-                    <!--   <li><a asp-controller="Home" asp-action="Promotions">Promotions</a></li>    -->
+                    <li><a id="promotions-btn" asp-controller="Home" asp-action="Promotions"><i class="fa fa-usd fa-fw" aria-hidden="true"></i><span id="promotions-txt" class="hide-text">&nbsp; Promotions</span></a></li>
+                    <li><a id="reservation-btn" asp-controller="Home" asp-action="Reservations"><i class="fa fa-book fa-fw" aria-hidden="true"></i><span id="reservation-txt" class="hide-text">&nbsp; Reservation</span></a></li>
                     <li><a id="contact-btn" asp-controller="Home" asp-action="Contact"><i class="fa fa-phone fa-fw" aria-hidden="true"></i><span id="contact-txt" class="hide-text">&nbsp; Contact Us</span></a></li>
                     <li><a id="social-btn" asp-controller="Home" asp-action="SocialMedia"><i class="fa fa-rss fa-fw" aria-hidden="true"></i><span id="social-txt" class="hide-text">&nbsp; Social Media</span></a></li>
-                    <li><a id="fair-btn" asp-controller="Home" asp-action="FairTrade"><span class="fa icon-hand-1311786"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span></span><span id="fair-txt" class="hide-text">&nbsp; Fair Share Group</span></a></li>
-                    <!-- <li><a id="business-btn" asp-controller="Home" asp-action="BusinessPartners"><i class="fa fa-industry fa-fw" aria-hidden="true"></i><span id="business-txt" class="hide-text">&nbsp; Business Partners</span></a></li>  -->
+                    <li><a id="fair-btn" asp-controller="Home" asp-action="FairTrade"><i class="fa fa-handshake-o fa-fw" aria-hidden="true"></i><span id="social-txt" class="hide-text">&nbsp; Fair Share Group</span></a></li>
                     <li><a id="about-btn" asp-controller="Home" asp-action="AboutUs"><i class="fa fa-users fa-fw" aria-hidden="true"></i><span id="about-txt" class="hide-text">&nbsp; About Us</span></a></li>
                     <li><a id="careers-btn" asp-controller="Home" asp-action="Careers"><i class="fa fa-suitcase fa-fw" aria-hidden="true"></i><span id="careers-txt" class="hide-text">&nbsp; Careers</span></a></li>
+                    @if (await AuthorizationService.AuthorizeAsync(User, "CanViewAdminPage"))
+                    {
+                        <li>
+                            <a class="text-danger" asp-area=""
+                               asp-controller="Admin" asp-action="Index">Admin Panel</a>
+                        </li>
+                    }
                 </ul>
-                <!--   @await Html.PartialAsync("_LoginPartial")  -->
+                @await Html.PartialAsync("_LoginPartial")
             </div>
         </div>
     </div>
@@ -99,6 +107,7 @@
                 asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
                 asp-fallback-test="window.jQuery">
         </script>
+        <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
         <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/bootstrap.min.js"
                 asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
                 asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
@@ -125,6 +134,24 @@
         },
         function () {
             $("#menu-txt").removeClass("inline-block").addClass("hide-text");
+        }
+    ),
+
+    $("#reservation-btn").hover(
+        function () {
+            $("#reservation-txt").removeClass("hide-text").addClass("inline-block");
+        },
+        function () {
+            $("#reservation-txt").removeClass("inline-block").addClass("hide-text");
+        }
+    ),
+
+    $("#promotions-btn").hover(
+        function () {
+            $("#promotions-txt").removeClass("hide-text").addClass("inline-block");
+        },
+        function () {
+            $("#promotions-txt").removeClass("inline-block").addClass("hide-text");
         }
     ),
 

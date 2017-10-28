@@ -1,0 +1,80 @@
+﻿@model Gosto.ViewModels.ShoppingCartViewModel
+
+@{
+    ViewBag.Title = "Shopping Cart";
+}
+
+<div id="cart">
+    <div class="col-sm-10">
+        <div class="tab-content">
+            <table class="table table-hover table-striped menu-item">
+                    <thead>
+                        <tr>
+                            <th>
+                                Item
+                            </th>
+                            <th>
+                                Quantity
+                            </th>
+                            <th>
+                                Price
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-hover">
+                        @{
+                            foreach (var item in Model.Items)
+                            {
+                                <tr>
+                                    <td>@item.MenuItem.Name</td>
+                                    <td>@item.Quantity</td>
+                                    <td>Rs. @item.MenuItem.Price/=</td>
+                                    <td><a onclick="removeFromCart(@item.MenuItemID)" class="btn btn-danger">Delete item</a></td>
+                                </tr>
+                            }
+                        }
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td id="total" class="pull-right">
+                                Total Amount = Rs. @Model.Total
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            <a id="emptyCart" onclick="emptyCart()" class="btn btn-danger">Empty Cart</a>
+            <a id="checkoutCart" onclick="checkout()" class="btn btn-success">Checkout</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    function removeFromCart(ID) {
+        var url = "/Home/RemoveFromCart/";
+        $.get(url, { ID: ID })
+        .done(function (response) {
+            $("#cart").html(response);
+        })
+    }
+</script>
+
+<script>
+    function emptyCart() {
+        var url = "/Home/EmptyCart/";
+        $.get(url)
+        .done(function (response) {
+            $("#cart").html(response);
+        })
+    }
+</script>
+
+<script>
+    function checkout() {
+        var url = "/Home/Checkout/";
+        $.get(url)
+        .done(function (response) {
+            $("#cart").html(response);
+        })
+    }
+</script>

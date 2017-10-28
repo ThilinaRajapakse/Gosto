@@ -5,20 +5,23 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Gosto.Data;
 using Gosto.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Gosto.Controllers
 {
+    [Authorize(Roles = "Administrator")]
+
     public class OrdersController : Controller
     {
-        private readonly MenuContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public OrdersController(MenuContext context)
+        public OrdersController(ApplicationDbContext context)
         {
             _context = context;    
         }
 
+        [Authorize(Roles ="Administrator, Staff")]
         // GET: Orders
         public async Task<IActionResult> Index()
         {
@@ -53,7 +56,7 @@ namespace Gosto.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,TakeAway,ReadyAt,TotalPrice")] Order order)
+        public async Task<IActionResult> Create([Bind("ID,OrderDate,ShoppingCartID,TakeAway,TotalPrice")] Order order)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +88,7 @@ namespace Gosto.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,TakeAway,ReadyAt,TotalPrice")] Order order)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,OrderDate,ShoppingCartID,TakeAway,TotalPrice")] Order order)
         {
             if (id != order.ID)
             {

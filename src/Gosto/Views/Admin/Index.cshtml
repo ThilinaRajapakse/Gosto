@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "Admin Panel";
+
+}
+
+<div class="container page">
+    <div class="row">
+        <a class="btn btn-warning col-md-3 col-md-offset-2 col-xs-12 margin-top-mobile" asp-controller="MenuSections" asp-action="Index">Menu Sections<p><img src="~/images/menu-sections.png" class="img-thumbnail" /></p></a>
+        <a class="btn btn-warning col-md-3 col-md-offset-2 col-xs-12 margin-top-mobile" asp-controller="MenuItems" asp-action="Index">Menu Items<p><img src="~/images/menu-items.jpg" class="img-thumbnail" /></p></a>
+    </div>
+    <div class="row margin-top">
+        <a class="btn btn-warning col-md-3 col-md-offset-2 col-xs-12 margin-top-mobile" asp-controller="Orders" asp-action="Index">Orders<p><img src="~/images/orders.jpg" class="img-thumbnail" /></p></a>
+        <a class="btn btn-warning col-md-3 col-md-offset-2 col-xs-12 margin-top-mobile" asp-controller="Reservations" asp-action="Index">Reservations<p><img src="~/images/reservations.jpg" class="img-thumbnail" /></p></a>
+    </div>
+    <div class="row margin-top">
+        <a class="btn btn-warning col-md-3 col-md-offset-2 col-xs-12 margin-top-mobile" asp-controller="Promotions" asp-action="Index">Promotions<p><img src="~/images/promotions.jpg" class="img-thumbnail" /></p></a>
+        <a class="btn btn-warning col-md-3 col-md-offset-2 col-xs-12 margin-top-mobile" asp-controller="ApplicationUsers" asp-action="Index">Users<p><img src="~/images/users.jpg" class="img-thumbnail" /></p></a>
+    </div>
+</div>
